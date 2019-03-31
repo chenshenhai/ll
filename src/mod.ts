@@ -1,9 +1,3 @@
-class Layer {
-  constructor() {
+import LogoLess from './sketch/mod.ts';
 
-  }
-
-  
-}
-
-export default Layer;
+export default LogoLess;

@@ -1,0 +1,32 @@
+{
+  "name": "logoless",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node_modules/.bin/rollup -w -c ./script/rollup.config.dev.js",
+    "build": "node_modules/.bin/rollup -c ./script/rollup.config.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenshenhai/logoless.git"
+  },
+  "keywords": [
+    "logoless"
+  ],
+  "author": "chenshenhai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chenshenhai/logoless/issues"
+  },
+  "homepage": "https://github.com/chenshenhai/logoless#readme",
+  "devDependencies": {
+    "rollup": "^1.7.4",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "tslib": "^1.9.3",
+    "typescript": "^3.4.1"
+  }
+}

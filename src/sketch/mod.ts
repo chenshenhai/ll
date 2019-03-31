@@ -13,6 +13,8 @@ class Sketch {
   private _layerCount: number;
 
   constructor(opts: SketchOptions) {
+    console.log('opts = ', opts);
+    console.log('this = ', this);
     this._width = opts.width;
     this._height = opts.height;
     this._layerCount = opts.layerCount;
@@ -28,3 +30,5 @@ class Sketch {
   }
 
 }
+
+export default Sketch;
