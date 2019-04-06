@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/chenshenhai/logoless#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-classes": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.2",
     "tslib": "^1.9.3",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.2"
   }
 }
