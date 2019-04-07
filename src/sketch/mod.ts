@@ -1,3 +1,4 @@
+import Layer from './../layer/mod.ts';
 
 export interface SketchOptions {
   width: number,
@@ -29,6 +30,7 @@ class Sketch {
   private _layerCount: number = 1;
   private _container: HTMLDivElement;
   private _canvasStock: HTMLCanvasElement[] = [];
+  private _layerStock: Layer[] = [];
 
   constructor(opts: SketchOptions) {
     this._width = opts.width;
@@ -58,6 +60,9 @@ class Sketch {
         height: `${height}px`,
         position: 'absolute',
       }));
+      const ctx = canvas.getContext('2d');
+      const layer = new Layer(ctx);
+      this._layerStock.push(layer);
       this._canvasStock.push(canvas);
       container.appendChild(canvas);
     }
@@ -66,8 +71,10 @@ class Sketch {
   getLayerContext(index: number) {
     let ctx = null;
     if (index < this._layerCount) {
-      const canvas = this._canvasStock[index];
-      ctx = canvas.getContext('2d');
+      const layer: Layer = this._layerStock[index];
+      if (layer instanceof Layer) {
+        ctx = layer.getLayerContext();
+      }
     }
     return ctx;
   }
