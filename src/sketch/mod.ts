@@ -63,8 +63,13 @@ class Sketch {
     }
   }
 
-  getLayer(index: number) {
-    return this._canvasStock[index];
+  getLayerContext(index: number) {
+    let ctx = null;
+    if (index < this._layerCount) {
+      const canvas = this._canvasStock[index];
+      ctx = canvas.getContext('2d');
+    }
+    return ctx;
   }
 
 }
