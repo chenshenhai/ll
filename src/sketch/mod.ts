@@ -97,14 +97,22 @@ class Sketch {
     return mergeImageData;
   }
 
-  downloadImage() {
+  downloadImage(filename = 'download-image') {
     const { _tempCanvas, _width, _height } = this;
     const tempContext = _tempCanvas.getContext('2d');
     tempContext.clearRect(0, 0, _width, _height);
     const mergeImageData = this.mergeLayer();
     tempContext.putImageData(mergeImageData, 0, 0);
-    const stream = _tempCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-    window.location.href = stream;
+    const stream = _tempCanvas.toDataURL("image/png");
+    const downloadLink = document.createElement('a');
+    downloadLink.href = stream;
+    downloadLink.download = filename;
+    const downloadClickEvent = document.createEvent('MouseEvents');
+    downloadClickEvent.initEvent('click', true, false);
+    downloadLink.dispatchEvent(downloadClickEvent);
+
+    // clear
+    tempContext.clearRect(0, 0, _width, _height);
   }
 
 }
