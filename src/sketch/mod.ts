@@ -31,6 +31,7 @@ class Sketch {
   private _container: HTMLDivElement;
   private _canvasStock: HTMLCanvasElement[] = [];
   private _layerStock: Layer[] = [];
+  private _tempCanvas: HTMLCanvasElement = null;
 
   constructor(opts: SketchOptions) {
     this._width = opts.width;
@@ -49,6 +50,10 @@ class Sketch {
       height: `${height}px`,
       position: 'relative',
     });
+    this._tempCanvas = document.createElement('canvas');
+    this._tempCanvas.width = width;
+    this._tempCanvas.height = height;
+
     container.setAttribute('style', style);
     const count = this._layerCount;
     for (let i = 0; i < count; i ++) {
@@ -77,6 +82,19 @@ class Sketch {
       }
     }
     return ctx;
+  }
+
+  mergeLayer() {
+    const { _tempCanvas, _width, _height } = this;
+    let tempContext = _tempCanvas.getContext('2d');
+    tempContext.clearRect(0, 0, _width, _height);
+    const canvasStock: HTMLCanvasElement[] = this._canvasStock;
+    canvasStock.forEach((canvas: HTMLCanvasElement) => {
+      tempContext.drawImage(canvas, 0, 0);
+    })
+    const mergeImageData = tempContext.getImageData(0, 0, _width, _height);
+    tempContext.clearRect(0, 0, _width, _height);
+    return mergeImageData;
   }
 
 }

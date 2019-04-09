@@ -16,6 +16,9 @@
   </style>
   <body>
     <div id="app"></div>
+    <div>
+      <canvas id="merge-canvas"></canvas>
+    </div>
     <script src="./../../../dist/index.js"></script>
     <script>
       var ll = new Logoless({
@@ -34,6 +37,13 @@
       ctx0.fillStyle = 'blue';
       ctx0.fillRect(100, 150, 200, 100);
       
+
+      var mergeImageData = ll.mergeLayer();
+      var mergeCanvas = document.getElementById('merge-canvas');
+      mergeCanvas.width = 401;
+      mergeCanvas.height = 401;
+      var mergeCtx = mergeCanvas.getContext('2d');
+      mergeCtx.putImageData(mergeImageData, 0, 0);
     </script>
   </body>
 </html>
