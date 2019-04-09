@@ -14,7 +14,7 @@ module.exports = [
     output: {
       file: resolveFile('dist/index.js'),
       format: 'iife',
-      name: 'LogoLess',
+      name: 'Logoless',
     }, 
     plugins: [
       typescript({lib: ["es5", "es6", "dom"], target: "es5"}),

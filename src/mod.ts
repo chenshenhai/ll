@@ -1,3 +1,3 @@
-import LogoLess from './sketch/mod.ts';
+import Logoless from './logoless/mod.ts';
 
-export default LogoLess;
+export default Logoless;
