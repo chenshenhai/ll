@@ -97,6 +97,16 @@ class Sketch {
     return mergeImageData;
   }
 
+  downloadImage() {
+    const { _tempCanvas, _width, _height } = this;
+    const tempContext = _tempCanvas.getContext('2d');
+    tempContext.clearRect(0, 0, _width, _height);
+    const mergeImageData = this.mergeLayer();
+    tempContext.putImageData(mergeImageData, 0, 0);
+    const stream = _tempCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    window.location.href = stream;
+  }
+
 }
 
 export default Sketch;
