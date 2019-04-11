@@ -73,6 +73,15 @@ class Sketch {
     return mergeImageData;
   }
 
+  moveUpLayer(index: number) {
+    // TODO
+  }
+
+  moveDownLayer(index: number) {
+    // TODO
+  }
+
+  
 }
 
 export default Sketch;

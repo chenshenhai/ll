@@ -37,11 +37,14 @@ class Sketchpad extends Sketch {
     });
     this._options = opts;
     this._container = opts.container
-    this._initSketchpad();
   }
 
-  private _initSketchpad() {
+  render() {
     const container: HTMLDivElement = this._container;
+    while (container.firstChild) {
+      let tempNode = container.removeChild(container.firstChild);
+      tempNode = null;
+    }
     const { width, height, layerCount } = this._options;
     const style = mergeCSS2Style({
       width: `${width}px`,
