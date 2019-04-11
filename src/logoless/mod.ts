@@ -1,6 +1,6 @@
-import Sketch from './../sketch/mod.ts';
+import Sketchpad from './../sketchpad/mod.ts';
 
-class Logoless extends Sketch {
+class Logoless extends Sketchpad {
   constructor(opts) {
     super(opts);
   }
