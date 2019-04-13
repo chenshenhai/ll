@@ -18,6 +18,7 @@
     <div id="app"></div>
     <script src="./../dist/index.js"></script>
     <script>
+    (function() {
       var ll = new Logoless({
         width: 401,
         height: 401,
@@ -43,8 +44,20 @@
       });
 
       ll.render();
-      
-      
+
+      setTimeout(function() {
+        ll.clearLayerDrawAction(1);
+        ll.pushLayerDrawAction(1, {
+          method: 'fillStyle',
+          args: 'yellow',
+        });
+        ll.pushLayerDrawAction(1, {
+          method: 'fillRect',
+          args: [200, 150, 50, 50],
+        });
+        ll.render();
+      }, 500)
+    })();
     </script>
   </body>
 </html>
