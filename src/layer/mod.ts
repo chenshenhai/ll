@@ -35,12 +35,6 @@ export class Layer {
     const context = this._context;
     for (let i = 0; i < list.length; i++) {
       const action = list[i];
-      if (typeof action.method !== 'string') {
-        continue;
-      }
-      if (Array.isArray(action.args) !== true) {
-        continue;
-      }
       drawAction(context, action.method, action.args);
     }
   }

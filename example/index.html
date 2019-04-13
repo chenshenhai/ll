@@ -31,19 +31,20 @@
       });
       ll.pushLayerDrawAction(0, {
         method: 'fillRect',
-        args: [50, 100, 200, 100],
+        args: [50, 100, 300, 200],
+      });
+      ll.pushLayerDrawAction(1, {
+        method: 'fillStyle',
+        args: 'yellow',
+      });
+      ll.pushLayerDrawAction(1, {
+        method: 'fillRect',
+        args: [100, 150, 50, 50],
       });
 
       ll.render();
-
-      // var ctx0 = ll.getLayerContext(0);
-      // var ctx1 = ll.getLayerContext(1);
-
-      // ctx0.fillStyle = 'red';
-      // ctx0.fillRect(50, 100, 200, 100);
-
-      // ctx0.fillStyle = 'blue';
-      // ctx0.fillRect(100, 150, 200, 100);
+      
+      
     </script>
   </body>
 </html>
