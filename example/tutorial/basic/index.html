@@ -18,25 +18,41 @@
     <div id="app"></div>
     <script src="./../../../dist/index.js"></script>
     <script>
-      var ll = new Logoless({
-        width: 401,
-        height: 401,
-        layerCount: 1,
-        container: document.getElementById('app'),
-      });
-      ll.render();
+      (function() {
+        var ll = new Logoless({
+          width: 401,
+          height: 401,
+          layerCount: 2,
+          container: document.getElementById('app'),
+        });
 
-      var ctx0 = ll.getLayerContext(0);
-      var ctx1 = ll.getLayerContext(1);
-
-      ctx0.fillStyle = 'red';
-      ctx0.fillRect(50, 100, 200, 100);
-
-      ctx0.fillStyle = 'blue';
-      ctx0.fillRect(100, 150, 200, 100);
-
-      
-      
+        var sketchSchema = {
+          name: '',
+          layerList: [
+            { 
+              name: '',
+              drawActionList: [{
+                method: 'fillStyle',
+                args: 'red',
+              }, {
+                method: 'fillRect',
+                args: [50, 100, 200, 100],
+              }],
+            },
+            {
+              name: '',
+              drawActionList: [{
+                method: 'fillStyle',
+                args: 'blue',
+              }, {
+                method: 'fillRect',
+                args: [100, 150, 200, 100],
+              }],
+            }
+          ]
+        }
+        ll.render(sketchSchema)
+      })();
     </script>
   </body>
 </html>
