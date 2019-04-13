@@ -22,7 +22,7 @@
     <script src="./../../../dist/index.js"></script>
     <script>
       (function() {
-        var ll = new Logoless({
+        var lx = new Logox({
           width: 401,
           height: 401,
           layerCount: 2,
@@ -54,10 +54,10 @@
             }
           ]
         }
-        ll.render(sketchSchema);
+        lx.render(sketchSchema);
 
 
-        var mergeImageData = ll.mergeLayer();
+        var mergeImageData = lx.mergeLayer();
         var mergeCanvas = document.getElementById('merge-canvas');
         mergeCanvas.width = 401;
         mergeCanvas.height = 401;

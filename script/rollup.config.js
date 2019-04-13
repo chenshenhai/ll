@@ -7,6 +7,7 @@ const resolveFile = function(filePath) {
   return path.join(__dirname, '..', filePath)
 }
 
+
 module.exports = [
   {
     // input: resolveFile('node/index.ts'),
@@ -14,7 +15,7 @@ module.exports = [
     output: {
       file: resolveFile('dist/index.js'),
       format: 'iife',
-      name: 'Logoless',
+      name: 'Logox',
     }, 
     plugins: [
       typescript({lib: ["es5", "es6", "dom"], target: "es5"}),

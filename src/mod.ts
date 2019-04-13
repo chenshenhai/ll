@@ -1,3 +1,3 @@
-import Logoless from './logoless/mod.ts';
+import Logox from './logox/mod.ts';
 
-export default Logoless;
+export default Logox;

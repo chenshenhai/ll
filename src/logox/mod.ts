@@ -1,9 +1,9 @@
 import Sketchpad from './../sketchpad/mod.ts';
 
-class Logoless extends Sketchpad {
+class Logox extends Sketchpad {
   constructor(opts) {
     super(opts);
   }
 }
 
-export default Logoless;
+export default Logox;

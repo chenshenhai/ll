@@ -1,3 +1,3 @@
-import LogoLess from './../src/mod.ts';
+import Logox from './../src/mod.ts';
 
-export default LogoLess;
+export default Logox;
