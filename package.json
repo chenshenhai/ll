@@ -9,17 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chenshenhai/logoless.git"
+    "url": "git+https://github.com/chenshenhai/logox.git"
   },
   "keywords": [
-    "logoless"
+    "logox"
   ],
   "author": "chenshenhai",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chenshenhai/logoless/issues"
+    "url": "https://github.com/chenshenhai/logox/issues"
   },
-  "homepage": "https://github.com/chenshenhai/logoless#readme",
+  "homepage": "https://github.com/chenshenhai/logox#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/plugin-transform-classes": "^7.4.3",
