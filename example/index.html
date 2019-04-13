@@ -1,17 +1,49 @@
 <html>
   <head>
+    <style>
+      #app {
+        background-image:
+          linear-gradient(#aaaaaa40 1px, transparent 0),
+          linear-gradient(90deg, #aaaaaa40 1px, transparent 0),
+          linear-gradient(#aaa 1px, transparent 0),
+          linear-gradient(90deg, #aaa 1px, transparent 0);
+        background-size: 10px 10px, 10px 10px, 50px 50px, 50px 50px;
+        width: 401px;
+        height: 401px;
+        margin: 10px;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
     <script src="./../dist/index.js"></script>
     <script>
       var ll = new Logoless({
-        width: 100,
-        height: 100,
-        layerCount: 10,
+        width: 401,
+        height: 401,
+        layerCount: 2,
         container: document.getElementById('app'),
       });
+
+      ll.pushLayerDrawAction(0, {
+        method: 'fillStyle',
+        args: 'blue',
+      });
+      ll.pushLayerDrawAction(0, {
+        method: 'fillRect',
+        args: [50, 100, 200, 100],
+      });
+
       ll.render();
+
+      // var ctx0 = ll.getLayerContext(0);
+      // var ctx1 = ll.getLayerContext(1);
+
+      // ctx0.fillStyle = 'red';
+      // ctx0.fillRect(50, 100, 200, 100);
+
+      // ctx0.fillStyle = 'blue';
+      // ctx0.fillRect(100, 150, 200, 100);
     </script>
   </body>
 </html>

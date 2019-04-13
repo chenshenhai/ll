@@ -60,17 +60,33 @@ class Sketch {
   //   return ctx;
   // }
 
-  pushLayerDrawAction(index, action: LayerDrawAction) {
-    const layer = this._layerStack[index];
+  pushLayerDrawAction(index: number, action: LayerDrawAction) {
+    const layer: Layer = this._layerStack[index];
     layer.pushDrawAction(action);
   }
 
-  clearLayerDrawAction() {
+  clearLayerDrawAction(index: number) {
+    const layer: Layer = this._layerStack[index];
+    layer.clearDrawAction();
+  }
 
+  clearAllLayerDrawAction() {
+    const layerList: Layer[] = this._layerStack;
+    layerList.forEach((layer: Layer) => {
+      layer.clearDrawAction();
+    });
   }
   
-  executeLayerDrawAction() {
+  executeLayerDrawAction(index: number) {
+    const layer = this._layerStack[index];
+    layer.executeDrawAction()
+  }
 
+  executeAllLayerDrawAction() {
+    const layerList: Layer[] = this._layerStack;
+    layerList.forEach((layer: Layer) => {
+      layer.executeDrawAction();
+    });
   }
 
   mergeLayer() {

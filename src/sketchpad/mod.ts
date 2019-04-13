@@ -64,6 +64,7 @@ class Sketchpad extends Sketch {
       }));
       container.appendChild(canvas);
     }
+    this.executeAllLayerDrawAction();
   }
 
 
