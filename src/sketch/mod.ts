@@ -1,12 +1,17 @@
-import {Layer, LayerDrawAction} from './../layer/mod.ts';
+import {Layer, LayerDrawAction, LayerSchema } from './../layer/mod.ts';
 
 export interface SketchOptions {
-  width: number,
-  height: number,
-  layerCount: number,
+  width: number;
+  height: number;
+  layerCount: number;
 }
 
-class Sketch {
+export interface SketchSchema {
+  name: string;
+  layerList: LayerSchema[];
+}
+
+export class Sketch {
 
   private _width: number;
   private _height: number;
@@ -14,6 +19,7 @@ class Sketch {
   private _canvasStack: HTMLCanvasElement[] = [];
   private _layerStack: Layer[] = [];
   private _tempCanvas: HTMLCanvasElement = null;
+  // private _sketchSchema: SketchSchema;
 
   constructor(opts: SketchOptions) {
     this._width = opts.width;
@@ -35,7 +41,7 @@ class Sketch {
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
-      const layer = new Layer(ctx);
+      const layer = new Layer(ctx, { width, height });
       this._layerStack.push(layer);
       this._canvasStack.push(canvas);
     }
@@ -49,44 +55,46 @@ class Sketch {
     return this._layerStack;
   }
 
-  // getLayerContext(index: number) {
-  //   let ctx = null;
-  //   if (index < this._layerCount) {
-  //     const layer: Layer = this._layerStack[index];
-  //     if (layer instanceof Layer) {
-  //       ctx = layer.getLayerContext();
-  //     }
-  //   }
-  //   return ctx;
+  // private _pushLayerDrawAction(index: number, action: LayerDrawAction) {
+  //   const layer: Layer = this._layerStack[index];
+  //   layer.pushDrawAction(action);
   // }
 
-  pushLayerDrawAction(index: number, action: LayerDrawAction) {
-    const layer: Layer = this._layerStack[index];
-    layer.pushDrawAction(action);
-  }
+  // private _clearLayerDrawAction(index: number) {
+  //   const layer: Layer = this._layerStack[index];
+  //   layer.clearDrawAction();
+  // }
 
-  clearLayerDrawAction(index: number) {
+  // private _clearAllLayerDrawAction() {
+  //   const layerList: Layer[] = this._layerStack;
+  //   layerList.forEach((layer: Layer) => {
+  //     layer.clearDrawAction();
+  //   });
+  // }
+  
+  // private _executeLayerDrawAction(index: number) {
+  //   const layer = this._layerStack[index];
+  //   layer.executeDrawAction()
+  // }
+
+  // private _executeAllLayerDrawAction() {
+  //   const layerList: Layer[] = this._layerStack;
+  //   layerList.forEach((layer: Layer) => {
+  //     layer.executeDrawAction();
+  //   });
+  // }
+
+  drawLayer(index: number, layerSchema: LayerSchema) {
     const layer: Layer = this._layerStack[index];
     layer.clearDrawAction();
+    layer.draw(layerSchema);
   }
 
-  clearAllLayerDrawAction() {
-    const layerList: Layer[] = this._layerStack;
-    layerList.forEach((layer: Layer) => {
-      layer.clearDrawAction();
-    });
-  }
-  
-  executeLayerDrawAction(index: number) {
-    const layer = this._layerStack[index];
-    layer.executeDrawAction()
-  }
-
-  executeAllLayerDrawAction() {
-    const layerList: Layer[] = this._layerStack;
-    layerList.forEach((layer: Layer) => {
-      layer.executeDrawAction();
-    });
+  drawAllLayer(sketchSchema: SketchSchema) {
+    const layerSchemaList: LayerSchema[] = sketchSchema.layerList;
+    layerSchemaList.forEach((layerSchema: LayerSchema, index: number) => {
+      this.drawLayer(index, layerSchema);
+    })
   }
 
   mergeLayer() {
@@ -112,5 +120,3 @@ class Sketch {
 
   
 }
-
-export default Sketch;

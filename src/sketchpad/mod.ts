@@ -1,5 +1,6 @@
-import Sketch from './../sketch/mod.ts';
-
+import { Sketch, SketchSchema } from './../sketch/mod.ts';
+import { LayerSchema } from './../layer/mod.ts';
+ 
 export interface SketchpadOptions {
   width: number,
   height: number,
@@ -27,6 +28,7 @@ class Sketchpad extends Sketch {
 
   private _options: SketchpadOptions;
   private _container: HTMLDivElement;
+  private _sketchSchema: SketchSchema;
 
   constructor(opts: SketchpadOptions) {
     super({
@@ -38,7 +40,8 @@ class Sketchpad extends Sketch {
     this._container = opts.container
   }
 
-  render() {
+  render(sketchSchema: SketchSchema) {
+    this._sketchSchema = sketchSchema;
     const container: HTMLDivElement = this._container;
     while (container.firstChild) {
       let tempNode = container.removeChild(container.firstChild);
@@ -64,7 +67,11 @@ class Sketchpad extends Sketch {
       }));
       container.appendChild(canvas);
     }
-    this.executeAllLayerDrawAction();
+    this.drawAllLayer(sketchSchema);
+  }
+
+  renderLayer(index: number, layerSchema: LayerSchema) {
+    this.drawLayer(index, layerSchema);
   }
 
 

@@ -19,6 +19,7 @@
     <script src="./../dist/index.js"></script>
     <script>
     (function() {
+
       var ll = new Logoless({
         width: 401,
         height: 401,
@@ -26,36 +27,46 @@
         container: document.getElementById('app'),
       });
 
-      ll.pushLayerDrawAction(0, {
-        method: 'fillStyle',
-        args: 'blue',
-      });
-      ll.pushLayerDrawAction(0, {
-        method: 'fillRect',
-        args: [50, 100, 300, 200],
-      });
-      ll.pushLayerDrawAction(1, {
-        method: 'fillStyle',
-        args: 'yellow',
-      });
-      ll.pushLayerDrawAction(1, {
-        method: 'fillRect',
-        args: [100, 150, 50, 50],
-      });
-
-      ll.render();
+      var sketchSchema = {
+        name: '',
+        layerList: [
+          { 
+            name: '',
+            drawActionList: [{
+              method: 'fillStyle',
+              args: 'blue',
+            }, {
+              method: 'fillRect',
+              args: [50, 100, 300, 200],
+            }],
+          },
+          {
+            name: '',
+            drawActionList: [{
+              method: 'fillStyle',
+              args: 'yellow',
+            }, {
+              method: 'fillRect',
+              args: [100, 150, 50, 50],
+            }],
+          }
+        ]
+      }
+      ll.render(sketchSchema)
 
       setTimeout(function() {
-        ll.clearLayerDrawAction(1);
-        ll.pushLayerDrawAction(1, {
-          method: 'fillStyle',
-          args: 'yellow',
+        ll.renderLayer(1, {
+          name: '',
+          drawActionList: [
+            {
+              method: 'fillStyle',
+              args: 'yellow',
+            }, {
+              method: 'fillRect',
+              args: [200, 150, 50, 50],
+            }
+          ],
         });
-        ll.pushLayerDrawAction(1, {
-          method: 'fillRect',
-          args: [200, 150, 50, 50],
-        });
-        ll.render();
       }, 500)
     })();
     </script>
