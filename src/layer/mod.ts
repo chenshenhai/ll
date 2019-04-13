@@ -1,12 +1,14 @@
-interface ContextDrawAction {
+import drawAction from './draw_action.ts';
+
+
+export interface LayerDrawAction {
   method: string,
-  args: any[],
+  args: any,
 }
 
-
-class Layer {
+export class Layer {
   private _context: CanvasRenderingContext2D;
-  private _contextDrawActionList: ContextDrawAction[] = [];
+  private _LayerDrawActionList: LayerDrawAction[] = [];
 
   constructor(context: CanvasRenderingContext2D) {
     this._context = context;
@@ -16,15 +18,20 @@ class Layer {
     return this._context;
   }
 
-  pushContextDrawAction(method, args) {  
-    this._contextDrawActionList.push({
+  clearDrawAction() {
+    this._LayerDrawActionList = [];
+  }
+
+  pushDrawAction(action: LayerDrawAction) {
+    const { method, args } = action;  
+    this._LayerDrawActionList.push({
       method,
       args,
     })
   }
 
   executeDrawAction() {
-    const list: ContextDrawAction[] = this._contextDrawActionList;
+    const list: LayerDrawAction[] = this._LayerDrawActionList;
     const context = this._context;
     for (let i = 0; i < list.length; i++) {
       const action = list[i];
@@ -34,12 +41,8 @@ class Layer {
       if (Array.isArray(action.args) !== true) {
         continue;
       }
-      if (typeof context[action.method] !== 'function') {
-        return;
-      }
-      context[action.method](...action.args);
+      drawAction(context, action.method, action.args);
     }
   }
 }
 
-export default Layer;

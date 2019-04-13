@@ -1,4 +1,4 @@
-import Layer from './../layer/mod.ts';
+import {Layer, LayerDrawAction} from './../layer/mod.ts';
 
 export interface SketchOptions {
   width: number,
@@ -49,15 +49,28 @@ class Sketch {
     return this._layerStack;
   }
 
-  getLayerContext(index: number) {
-    let ctx = null;
-    if (index < this._layerCount) {
-      const layer: Layer = this._layerStack[index];
-      if (layer instanceof Layer) {
-        ctx = layer.getLayerContext();
-      }
-    }
-    return ctx;
+  // getLayerContext(index: number) {
+  //   let ctx = null;
+  //   if (index < this._layerCount) {
+  //     const layer: Layer = this._layerStack[index];
+  //     if (layer instanceof Layer) {
+  //       ctx = layer.getLayerContext();
+  //     }
+  //   }
+  //   return ctx;
+  // }
+
+  pushLayerDrawAction(index, action: LayerDrawAction) {
+    const layer = this._layerStack[index];
+    layer.pushDrawAction(action);
+  }
+
+  clearLayerDrawAction() {
+
+  }
+  
+  executeLayerDrawAction() {
+
   }
 
   mergeLayer() {

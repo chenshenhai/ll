@@ -1,4 +1,3 @@
-import Layer from './../layer/mod.ts';
 import Sketch from './../sketch/mod.ts';
 
 export interface SketchpadOptions {
