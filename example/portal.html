@@ -5,7 +5,12 @@
   <body>
     <div class="logox-portal-container">
       <div class="logox-dashboard">
-        <div class="logox-dashboard-header"></div>
+        <div class="logox-dashboard-header" id="J_Logox_Header">
+          <div class="logox-btn-combine-group header-btn-group">
+            <button class="btn-combine btn-activity" id="J_Btn_SketchMode">sketch</button>
+            <button class="btn-combine" id="J_Btn_SchemaMode">schema</button>
+          </div>
+        </div>
         <div class="logox-dashboard-content">
           <div class="logox-dashboard-main">
             <div class="dashboard-left-menu"></div>
@@ -14,16 +19,31 @@
                 <div id="logox-sketchpad"></div>
               </div>
               <div class="dashboard-btn-group logox-btn-group">
-                <button class="btn-common" id="btn-sketch-schema">schema</button>
                 <button class="btn-common" id="btn-sketch-download">download</button>
               </div>
             </div>
             <div class="dashboard-right-menu"></div>
           </div>
+
+          <div class="logox-schema-box">
+            <textarea class="logox-schema-textarea"></textarea>
+          </div>
         </div>
         <!-- <div class="logox-dashboard-footer"></div> -->
       </div>
+      
     </div>
-    <script src="./../../dist/portal/index.js"></script>
+    
+    <!-- <div class="logox-dialog">
+      <div class="logox-dialog-mask"></div>
+      <div class="logox-dialog-conatiner">
+        <div class="logox-dialog-main">
+          <div class="dialog-header"></div>
+          <div class="dialog-content"></div>
+        </div>
+      </div>
+    </div> -->
+
   </body>
+  <script src="./../../dist/portal/index.js"></script>
 </html>
