@@ -1,15 +1,12 @@
-import Logox from './../logox/mod.ts';
-import './less/index.less';
+import headerEventHub from './lib/header_event_hub.ts';
+import sketchEventHub from './lib/sketch_event_hub.ts';
+import './assets/index.less';
 
-const container = document.getElementById('logox-sketchpad');
-const lx = new Logox({
-  width: 500,
-  height: 500,
-  layerCount: 2,
-  container,
-});
 
-var sketchSchema = {
+
+headerEventHub.initClickEvent();
+
+const sketchSchema = {
   name: '',
   layerList: [
     { 
@@ -34,6 +31,6 @@ var sketchSchema = {
     }
   ]
 }
-lx.render(sketchSchema);
+sketchEventHub.triggerRender(sketchSchema);
 
 console.log('hello logox-portal');
