@@ -12,8 +12,21 @@ const lx = new Logox({
 const $sketch = document.getElementById('J_Logox_SketchContent');
 const $schema = document.getElementById('J_Logox_SchemaContent');
 const $textarea = <HTMLTextAreaElement> document.getElementById('J_Logox_SchemaTextarea');
+const $btnDownloadImage = document.getElementById('J_Logox_BtnDownloadImage');
+let hasInitialized = false;
 
 const eventHub = {
+  initClickEvent() {
+    if (hasInitialized === true) {
+      return;
+    }
+
+    $btnDownloadImage.addEventListener('click', () => {
+      this.triggerDownloadImage();
+    });
+
+    hasInitialized = true;
+  },
 
   triggerShowSketch(display: boolean) {
     const schemaData = lx.getSchema();
@@ -54,6 +67,10 @@ const eventHub = {
       console.log(err);
     }
     $textarea.innerHTML = dataStr;
+  },
+
+  triggerDownloadImage() {
+    lx.downloadImage('logox.png');
   }
 }
 
