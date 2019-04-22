@@ -7,7 +7,7 @@ export interface SketchOptions {
 }
 
 export interface SketchSchema {
-  name: string;
+  name?: string;
   layerList: LayerSchema[];
 }
 
@@ -55,35 +55,6 @@ export class Sketch {
     return this._layerStack;
   }
 
-  // private _pushLayerDrawAction(index: number, action: LayerDrawAction) {
-  //   const layer: Layer = this._layerStack[index];
-  //   layer.pushDrawAction(action);
-  // }
-
-  // private _clearLayerDrawAction(index: number) {
-  //   const layer: Layer = this._layerStack[index];
-  //   layer.clearDrawAction();
-  // }
-
-  // private _clearAllLayerDrawAction() {
-  //   const layerList: Layer[] = this._layerStack;
-  //   layerList.forEach((layer: Layer) => {
-  //     layer.clearDrawAction();
-  //   });
-  // }
-  
-  // private _executeLayerDrawAction(index: number) {
-  //   const layer = this._layerStack[index];
-  //   layer.executeDrawAction()
-  // }
-
-  // private _executeAllLayerDrawAction() {
-  //   const layerList: Layer[] = this._layerStack;
-  //   layerList.forEach((layer: Layer) => {
-  //     layer.executeDrawAction();
-  //   });
-  // }
-
   drawLayer(index: number, layerSchema: LayerSchema) {
     const layer: Layer = this._layerStack[index];
     layer.clearDrawAction();
@@ -95,6 +66,17 @@ export class Sketch {
     layerSchemaList.forEach((layerSchema: LayerSchema, index: number) => {
       this.drawLayer(index, layerSchema);
     })
+  }
+
+  getSchema() {
+    const layerList = [];
+    this._layerStack.forEach((layer) => {
+      const schema = layer.getSchema();
+      layerList.push(schema);
+    });
+    return {
+      layerList,
+    }
   }
 
   mergeLayer() {

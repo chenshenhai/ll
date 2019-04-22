@@ -1,8 +1,6 @@
 const schema = {
-  name: '',
   layerList: [
     { 
-      name: '',
       drawActionList: [{
         method: 'fillStyle',
         args: 'red',
@@ -12,7 +10,6 @@ const schema = {
       }],
     },
     {
-      name: '',
       drawActionList: [{
         method: 'fillStyle',
         args: 'blue',

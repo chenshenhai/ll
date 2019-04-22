@@ -12,7 +12,7 @@ export interface LayerOptions {
 }
 
 export interface LayerSchema {
-  name: string;
+  name?: string;
   drawActionList: LayerDrawAction[];
 }
 
@@ -55,6 +55,8 @@ export class Layer {
     this._executeDrawAction();
   }
 
-  
+  getSchema(): LayerSchema {
+    return this._layerSchema;
+  }
 }
 

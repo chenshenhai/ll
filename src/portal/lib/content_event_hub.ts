@@ -11,11 +11,14 @@ const lx = new Logox({
 
 const $sketch = document.getElementById('J_Logox_SketchContent');
 const $schema = document.getElementById('J_Logox_SchemaContent');
-const $textarea = document.getElementById('J_Logox_SchemaTextarea');
+const $textarea = <HTMLTextAreaElement> document.getElementById('J_Logox_SchemaTextarea');
 
 const eventHub = {
 
   triggerShowSketch(display: boolean) {
+    const schemaData = lx.getSchema();
+    this.triggerSchemaRenderData(schemaData);
+    this.triggerSketchRenderData(schemaData);
     if (display === true) {
       $sketch.classList.remove('block-hide');
       $sketch.classList.add('block-show');
@@ -26,6 +29,10 @@ const eventHub = {
   },
 
   triggerShowSchema(display: boolean) {
+    const schemaStr = $textarea.value;
+    const schemaData = JSON.parse(schemaStr || '{}');
+    this.triggerSchemaRenderData(schemaData);
+    this.triggerSketchRenderData(schemaData);
     if (display === true) {
       $schema.classList.remove('block-hide');
       $schema.classList.add('block-show');

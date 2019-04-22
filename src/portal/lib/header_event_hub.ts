@@ -11,17 +11,17 @@ const headerEventHub = {
       return;
     }
     $btnSketch.addEventListener('click', () => {
-      this.triggerBtnSchemaActive(false);
-      this.triggerBtnSketchActive(true);
       contentEventHub.triggerShowSchema(false);
       contentEventHub.triggerShowSketch(true);
+      this.triggerBtnSchemaActive(false);
+      this.triggerBtnSketchActive(true);
     });
 
     $btnSchema.addEventListener('click', () => {
-      this.triggerBtnSchemaActive(true);
-      this.triggerBtnSketchActive(false);
       contentEventHub.triggerShowSchema(true);
       contentEventHub.triggerShowSketch(false);
+      this.triggerBtnSchemaActive(true);
+      this.triggerBtnSketchActive(false);
     });
 
     hasInitialized = true;
