@@ -1,17 +1,11 @@
-import Logox from './../../logox/mod.ts';
-import { SketchSchema } from './../../sketch/mod.ts';
 
-const container = document.getElementById('logox-sketchpad');
-const lx = new Logox({
-  width: 500,
-  height: 500,
-  layerCount: 2,
-  container,
-});
+import { SketchSchema } from './../../sketch/mod.ts';
+import contentEventHub from './content_event_hub.ts';
 
 const eventHub = {
   triggerRender(sketchSchema: SketchSchema) {
-    lx.render(sketchSchema);
+    contentEventHub.triggerSchemaRenderData(sketchSchema);
+    contentEventHub.triggerSketchRenderData(sketchSchema);
   }
 }
 

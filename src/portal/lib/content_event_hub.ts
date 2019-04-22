@@ -1,5 +1,17 @@
+import Logox from './../../logox/mod.ts';
+import { SketchSchema } from './../../sketch/mod.ts';
+
+const container = document.getElementById('J_Logox_Sketchpad');
+const lx = new Logox({
+  width: 500,
+  height: 500,
+  layerCount: 2,
+  container,
+});
+
 const $sketch = document.getElementById('J_Logox_SketchContent');
 const $schema = document.getElementById('J_Logox_SchemaContent');
+const $textarea = document.getElementById('J_Logox_SchemaTextarea');
 
 const eventHub = {
 
@@ -21,6 +33,20 @@ const eventHub = {
       $schema.classList.remove('block-show');
       $schema.classList.add('block-hide');
     }
+  },
+
+  triggerSketchRenderData(data: SketchSchema) {
+    lx.render(data);
+  },
+
+  triggerSchemaRenderData(data: SketchSchema) {
+    let dataStr = '';
+    try {
+      dataStr = JSON.stringify(data, null, 4);
+    } catch (err) {
+      console.log(err);
+    }
+    $textarea.innerHTML = dataStr;
   }
 }
 
